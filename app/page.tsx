@@ -155,7 +155,7 @@ const GeminiChat: React.FC = () => {
     setLoading(true)
     try {
       // Make API call to Gemini endpoint with user prompt and context
-      const res = await fetch(`${BackendURL}/api/gemini`, {
+      const res = await fetch(`/api/gemini`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -216,7 +216,7 @@ const clearChat = async (): Promise<void> => {
     try {
         // --- CHANGE THIS LINE ---
         // Instead of /api/gemini/reset, call /api/gemini with a JSON body
-        const res = await fetch(`${BackendURL}/api/gemini`, { 
+        const res = await fetch(`/api/gemini`, { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
