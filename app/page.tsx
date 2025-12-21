@@ -201,8 +201,8 @@ const GeminiChat: React.FC = () => {
     }
   }
 
- // Function to clear all messages and reset chat 
-const clearChat = async (): Promise<void> => {
+  // Function to clear all messages and reset chat 
+  const clearChat = async (): Promise<void> => {
     // [Keep the local message clearing logic here]
     setMessages([
       {
@@ -214,28 +214,28 @@ const clearChat = async (): Promise<void> => {
     ]);
 
     try {
-        // --- CHANGE THIS LINE ---
-        // Instead of /api/gemini/reset, call /api/gemini with a JSON body
-        const res = await fetch(`/api/gemini`, { 
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                action: "reset" // Send the required action payload
-            })
-        });
+      // --- CHANGE THIS LINE ---
+      // Instead of /api/gemini/reset, call /api/gemini with a JSON body
+      const res = await fetch(`/api/gemini`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "reset" // Send the required action payload
+        })
+      });
 
-        if (!res.ok) {
-            throw new Error(`Failed to reset chat on server: ${res.status}`);
-        }
-        
+      if (!res.ok) {
+        throw new Error(`Failed to reset chat on server: ${res.status}`);
+      }
+
     } catch (err) {
-        console.error("Failed to reset chat session:", err);
+      console.error("Failed to reset chat session:", err);
     }
     // Set confirmation state back to false if you have a confirmation modal
     // setIsClearChat(false); 
-};
+  };
 
 
   // Function to copy message content to clipboard
@@ -255,11 +255,14 @@ const clearChat = async (): Promise<void> => {
           : "bg-linear-to-r from-emerald-500 via-green-400 to-teal-500 text-white border-green-300"}`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12  ">
-              <img
-                src="/image.png"
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex items-center justify-center">
+              <Image
+                src="/logo.jpg"
                 alt="Vision AI Logo"
-                className="w-full h-full object-cover object-center rounded-full pt-2 "
+                width={48}
+                height={48}
+                className="object-cover"
+                priority
               />
             </div>
 
@@ -384,7 +387,7 @@ const clearChat = async (): Promise<void> => {
                   {message.type === "bot" && (
                     <div className="hidden sm:flex w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0">
                       <Image
-                        src="/image.png"
+                        src="/logo.jpg"
                         alt="logo"
                         width={200}
                         height={200}
@@ -412,7 +415,7 @@ const clearChat = async (): Promise<void> => {
 
 
                     <div className={`flex items-center space-x-1 sm:space-x-2 mt-1 sm:mt-2 ${message.type === "user" ? "justify-end" : "justify-start"}`}>
-                      <span className={`${isDarkMode ? `text-gray-300` : `text-gray-700`} text-xs `}>{message.timestamp}</span>
+                      <span suppressHydrationWarning className={`${isDarkMode ? `text-gray-300` : `text-gray-700`} text-xs `}>{message.timestamp}</span>
                       {message.type === "bot" && (
                         <div className="flex space-x-1 opacity-100 transition-opacity">
                           <button onClick={() => copyMessage(message.content)} className={` ${isDarkMode ? `text-gray-300 hover:text-green-300` : `text-gray-700 hover:text-green-600`}p-1  transition-colors cursor-pointer`} title="Copy message">
@@ -436,7 +439,7 @@ const clearChat = async (): Promise<void> => {
               <div className="flex items-center space-x-2 sm:space-x-3 animate-pulse">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden shadow-md">
                   <img
-                    src="/image.png"
+                    src="/logo.jpg"
                     alt="Vision AI"
                     className="w-full h-full object-cover"
                   />

@@ -4,8 +4,13 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Vision",
+  title: "Vision AI",
   description: "Vision ChatBot Developed using Next.js, Tailwind CSS, and Gemini API",
+  icons: {
+    icon: "/logo.jpg",      
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
 };
 
 export default function RootLayout({
